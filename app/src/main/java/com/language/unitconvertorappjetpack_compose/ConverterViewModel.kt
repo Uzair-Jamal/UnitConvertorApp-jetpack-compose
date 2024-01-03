@@ -1,6 +1,7 @@
 package com.language.unitconvertorappjetpack_compose
 
 import androidx.lifecycle.ViewModel
+import com.language.unitconvertorappjetpack_compose.data.Conversion
 
 class ConverterViewModel : ViewModel() {
     fun getConversion() = listOf(

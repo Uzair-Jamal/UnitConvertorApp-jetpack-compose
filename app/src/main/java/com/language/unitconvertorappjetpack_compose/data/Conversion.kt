@@ -1,4 +1,4 @@
-package com.language.unitconvertorappjetpack_compose
+package com.language.unitconvertorappjetpack_compose.data
 
 data class Conversion (
     val id : Int,
