@@ -30,6 +30,7 @@ import com.language.unitconvertorappjetpack_compose.data.Conversion
 @Composable
 fun ConversionMenu(
     list: List<Conversion>,
+    isLandscape: Boolean,
     modifier: Modifier = Modifier,
     convert: (Conversion) -> Unit
 ) {

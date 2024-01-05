@@ -16,6 +16,7 @@ fun TopScreen(
     selectedConversion : MutableState<Conversion?>,
     inputText: MutableState<String>,
     typedValue: MutableState<String>,
+    isLandscape: Boolean,
     save: (String, String) -> Unit
     ) {
     var toSave by remember {

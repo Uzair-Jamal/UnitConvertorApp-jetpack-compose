@@ -35,6 +35,7 @@ fun InputBlock(
     inputText: MutableState<String>,
     modifier: Modifier = Modifier,
     context: Context = LocalContext.current,
+    isLandscape: Boolean,
     calculate: (String) -> Unit
 ){
     Column(modifier = modifier.padding(0.dp,20.dp,0.dp,0.dp)) {
