@@ -9,26 +9,6 @@ import kotlinx.coroutines.internal.synchronized
 
 @Database(entities = [ConversionResult::class], version = 1)
 abstract class ConverterDatabase : RoomDatabase() {
-
     abstract val converterDAO: ConverterDAO
-
-    companion object{
-        @Volatile
-        private var INSTANCE: ConverterDatabase ? = null
-        @OptIn(InternalCoroutinesApi::class)
-        fun getInstance(context: Context): ConverterDatabase {
-            synchronized(this) {
-                var instance = INSTANCE
-                if (instance == null) {
-                    instance = Room.databaseBuilder(
-                        context.applicationContext,
-                        ConverterDatabase::class.java,
-                        "converter_database"
-                    ).build()
-                }
-                return instance
-            }
-        }
-    }
 
 }

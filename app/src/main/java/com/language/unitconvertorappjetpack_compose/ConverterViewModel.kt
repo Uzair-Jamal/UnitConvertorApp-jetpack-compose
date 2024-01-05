@@ -1,9 +1,21 @@
 package com.language.unitconvertorappjetpack_compose
 
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.language.unitconvertorappjetpack_compose.data.Conversion
+import com.language.unitconvertorappjetpack_compose.data.ConversionResult
+import com.language.unitconvertorappjetpack_compose.data.ConverterRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-class ConverterViewModel : ViewModel() {
+class ConverterViewModel(private val repository: ConverterRepository) : ViewModel() {
+
+    val selectedConversion: MutableState<Conversion?> = mutableStateOf(null)
+    val inputText: MutableState<String> =  mutableStateOf("")
+    val typedValue = mutableStateOf("0.0")
     fun getConversion() = listOf(
         Conversion(1,"Pounds to Kilograms","lbs","kg",0.453592),
         Conversion(2,"Kilograms to Pounds","kg","lbs",2.20462),
@@ -11,6 +23,25 @@ class ConverterViewModel : ViewModel() {
         Conversion(4,"Meters to Yards","m","yd",1.09361),
         Conversion(5,"Miles to Kilometers","mi","km",1.852),
         Conversion(6,"Kilometers to Miles","km","mi",0.539957)
-
     )
+
+    val resultList = repository.getSavedResults()
+    fun getResult(message1: String, message2: String){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.insertResult(ConversionResult(0,message1,message2))
+        }
+    }
+    fun removeResult(item: ConversionResult){
+        viewModelScope.launch (Dispatchers.IO ){
+            repository.deleteResult(item)
+        }
+
+    }
+
+    fun clearAll(){
+        viewModelScope.launch(Dispatchers.IO){
+            repository.deleteAllResults()
+        }
+    }
+
 }

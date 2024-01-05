@@ -6,5 +6,5 @@ interface ConverterRepository {
     suspend fun insertResult(result: ConversionResult)
     suspend fun deleteResult(result: ConversionResult)
     suspend fun deleteAllResults()
-    fun getAllResults(): Flow<List<ConversionResult>>
+    fun getSavedResults(): Flow<List<ConversionResult>>
 }
